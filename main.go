@@ -1,13 +1,7 @@
 package main
 
 import (
-	"crypto/md5"
-	"crypto/sha1"
-	"encoding/hex"
-	"fmt"
-	"io"
 	"log"
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -26,21 +20,7 @@ func main() {
 		Example: "filesum md5 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
 			//md5 calculation
-			file, err := os.Open(args[0])
-			if err != nil {
-				log.Fatal(err)
-			}
-			defer file.Close()
-
-			hash := md5.New()
-			if _, err := io.Copy(hash, file); err != nil {
-				log.Fatal(err)
-			}
-
-			hashBytes := hash.Sum(nil)
-			hashString := hex.EncodeToString(hashBytes)
-
-			fmt.Println(hashString)
+			md5Calculator(args[0])
 		},
 	})
 
@@ -51,21 +31,7 @@ func main() {
 		Example: "filesum sha1 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
 			//sha1 calculation
-			file, err := os.Open(args[0])
-			if err != nil {
-				log.Fatal(err)
-			}
-			defer file.Close()
-
-			hash := sha1.New()
-			if _, err := io.Copy(hash, file); err != nil {
-				log.Fatal(err)
-			}
-
-			hashBytes := hash.Sum(nil)
-			hashString := hex.EncodeToString(hashBytes)
-
-			fmt.Println(hashString)
+			sha1Calculator(args[0])
 		},
 	})
 
