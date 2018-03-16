@@ -1,7 +1,12 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+	"io"
 	"log"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -20,6 +25,21 @@ func main() {
 		Example: "filesum md5 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
 			//md5 calculation
+			file, err := os.Open(args[0])
+			if err != nil {
+				log.Fatal(err)
+			}
+			defer file.Close()
+
+			hash := md5.New()
+			if _, err := io.Copy(hash, file); err != nil {
+				log.Fatal(err)
+			}
+
+			hashBytes := hash.Sum(nil)[:16]
+			md5String := hex.EncodeToString(hashBytes)
+
+			fmt.Println(md5String)
 		},
 	})
 
