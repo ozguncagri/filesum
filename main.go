@@ -46,6 +46,17 @@ func main() {
 		},
 	})
 
+	rootCmd.AddCommand(&cobra.Command{
+		Use:     "sha512",
+		Short:   "Calculate SHA512 signature of file",
+		Long:    "Calculates SHA512 signature of file and prints to stdout",
+		Example: "filesum sha512 <filePath>",
+		Run: func(cmd *cobra.Command, args []string) {
+			//sha1 calculation
+			sha512Calculator(args[0])
+		},
+	})
+
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatal(err)
 	}
