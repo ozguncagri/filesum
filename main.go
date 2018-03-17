@@ -37,8 +37,9 @@ func main() {
 
 	rootCmd.AddCommand(&cobra.Command{
 		Use:     "sha256",
-		Short:   "Calculate SHA256 signature of file",
-		Long:    "Calculates SHA256 signature of file and prints to stdout",
+		Aliases: []string{"sha2"},
+		Short:   "Calculate SHA256 (SHA2) signature of file",
+		Long:    "Calculates SHA256 (SHA2) signature of file and prints to stdout",
 		Example: "filesum sha256 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
 			//sha1 calculation
@@ -48,8 +49,9 @@ func main() {
 
 	rootCmd.AddCommand(&cobra.Command{
 		Use:     "sha512",
-		Short:   "Calculate SHA512 signature of file",
-		Long:    "Calculates SHA512 signature of file and prints to stdout",
+		Aliases: []string{"sha3"},
+		Short:   "Calculate SHA512 (SHA3) signature of file",
+		Long:    "Calculates SHA512 (SHA3) signature of file and prints to stdout",
 		Example: "filesum sha512 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
 			//sha1 calculation
