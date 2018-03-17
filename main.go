@@ -35,6 +35,17 @@ func main() {
 		},
 	})
 
+	rootCmd.AddCommand(&cobra.Command{
+		Use:     "sha256",
+		Short:   "Calculate SHA256 signature of file",
+		Long:    "Calculates SHA256 signature of file and prints to stdout",
+		Example: "filesum sha256 <filePath>",
+		Run: func(cmd *cobra.Command, args []string) {
+			//sha1 calculation
+			sha256Calculator(args[0])
+		},
+	})
+
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatal(err)
 	}
