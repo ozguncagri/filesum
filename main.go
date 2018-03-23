@@ -19,7 +19,6 @@ func main() {
 		Long:    "Calculates MD5 signature of file and prints to stdout",
 		Example: "filesum md5 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
-			//md5 calculation
 			md5Calculator(args[0])
 		},
 	})
@@ -30,7 +29,6 @@ func main() {
 		Long:    "Calculates SHA1 signature of file and prints to stdout",
 		Example: "filesum sha1 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
-			//sha1 calculation
 			sha1Calculator(args[0])
 		},
 	})
@@ -42,7 +40,6 @@ func main() {
 		Long:    "Calculates SHA256 (SHA2) signature of file and prints to stdout",
 		Example: "filesum sha256 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
-			//sha1 calculation
 			sha256Calculator(args[0])
 		},
 	})
@@ -54,7 +51,6 @@ func main() {
 		Long:    "Calculates SHA512 (SHA3) signature of file and prints to stdout",
 		Example: "filesum sha512 <filePath>",
 		Run: func(cmd *cobra.Command, args []string) {
-			//sha1 calculation
 			sha512Calculator(args[0])
 		},
 	})

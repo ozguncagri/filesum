@@ -10,7 +10,6 @@ import (
 )
 
 func md5Calculator(filePath string) {
-	//md5 calculation
 	file, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
