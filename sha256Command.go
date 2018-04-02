@@ -7,10 +7,12 @@ import (
 	"io"
 	"log"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
-func sha256Calculator(filePath string) {
-	file, err := os.Open(filePath)
+func sha256Calculator(cmd *cobra.Command, args []string) {
+	file, err := os.Open(args[0])
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,4 +27,15 @@ func sha256Calculator(filePath string) {
 	hashString := hex.EncodeToString(hashBytes)
 
 	fmt.Println(hashString)
+}
+
+func init() {
+	rootCmd.AddCommand(&cobra.Command{
+		Use:     "sha256",
+		Aliases: []string{"sha2"},
+		Short:   "Calculate SHA256 (SHA2) signature of file",
+		Long:    "Calculates SHA256 (SHA2) signature of file and prints to stdout",
+		Example: "filesum sha256 <filePath>",
+		Run:     sha256Calculator,
+	})
 }
