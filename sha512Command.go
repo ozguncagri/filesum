@@ -12,11 +12,6 @@ import (
 )
 
 func sha512Calculator(cmd *cobra.Command, args []string) {
-	if len(args) == 0 {
-		cmd.Help()
-		os.Exit(0)
-	}
-
 	for _, v := range args {
 		file, err := os.Open(v)
 		if err != nil {
@@ -43,6 +38,7 @@ func init() {
 		Short:   "Calculate SHA512 (SHA3) signature of file",
 		Long:    "Calculates SHA512 (SHA3) signature of file and prints to stdout",
 		Example: "filesum sha512 <filePath>",
+		Args:    cobra.MinimumNArgs(1),
 		Run:     sha512Calculator,
 	})
 }
