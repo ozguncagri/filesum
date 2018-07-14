@@ -12,21 +12,28 @@ import (
 )
 
 func sha1Calculator(cmd *cobra.Command, args []string) {
-	file, err := os.Open(args[0])
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	hash := sha1.New()
-	if _, err := io.Copy(hash, file); err != nil {
-		log.Fatal(err)
+	if len(args) == 0 {
+		cmd.Help()
+		os.Exit(0)
 	}
 
-	hashBytes := hash.Sum(nil)
-	hashString := hex.EncodeToString(hashBytes)
+	for _, v := range args {
+		file, err := os.Open(v)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer file.Close()
 
-	fmt.Println(hashString)
+		hash := sha1.New()
+		if _, err := io.Copy(hash, file); err != nil {
+			log.Fatal(err)
+		}
+
+		hashBytes := hash.Sum(nil)
+		hashString := hex.EncodeToString(hashBytes)
+
+		fmt.Printf("SHA1 (%v) = %v\n", v, hashString)
+	}
 }
 
 func init() {
